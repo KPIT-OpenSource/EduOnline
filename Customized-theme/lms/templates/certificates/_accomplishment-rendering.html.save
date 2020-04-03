@@ -208,7 +208,7 @@ todays_date = str(month)+" "+str(day)+", "+str(year)
                     </div>
                     <div class="accomplishment-footer">
                         <div>${_('HONOR CODE CERTIFICATE')}</div>
-                        <div>${_('*Authentication of this certificate is validated by KPIT')}</div>
+                        <div>${_('*Authentication of this certificate is validated by Organization')}</div>
                     </div>
                 </div>
             </div>

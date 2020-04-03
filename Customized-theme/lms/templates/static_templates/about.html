@@ -1,0 +1,17 @@
+<%page expression_filter="h"/>
+<%! from django.utils.translation import ugettext as _ %>
+<%inherit file="../main.html" />
+
+<%block name="pagetitle">${_("About")}</%block>
+
+<main id="main" aria-label="Content" tabindex="-1">
+    <section class="container about">
+        <h1>
+            <%block name="pageheader">${page_header or _("About")}</%block>
+        </h1>
+        <p>
+          KPIT eduOnline is an e-learning platform that offers interactive online courses for the employees.<br><br> The EduOnline allows the employees to access course content including videos, textbooks, and problems, <br><br>and to check their progress in the course. The EduOnline also offers a forum for discussion and a wiki<br><br>open to both employees and course team members to contribute. For course team members, <br><br>the EduOnline includes an Instructor Dashboard, with options for employees to enroll, produce reports, and <br><br>administer a course while it runs. One can access and use the EduOnline directly through a browser.
+
+        </p>
+    </section>
+</main>

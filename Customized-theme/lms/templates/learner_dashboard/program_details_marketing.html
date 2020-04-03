@@ -1,0 +1,129 @@
+<%! main_css = "style-learner-dashboard" %>
+
+<%page expression_filter="h"/>
+<%inherit file="../main.html" />
+<%namespace name='static' file='../static_content.html'/>
+<%!
+from django.utils.translation import ugettext as _
+%>
+
+<%block name="pagetitle">${_("Program Details")}</%block>
+<%block name="bodyclass">program-details program-view</%block>
+
+<%
+  video_1='#'
+  video_2='#'
+
+  if program_data.get('marketing_slug', '#')=='MPP - Data Science':
+    video_1='https://www.youtube.com/embed/3ps_VQn4gtI?rel=0'
+    video_2='https://www.youtube.com/embed/OpJGW0dHEEw?rel=0'
+  elif program_data.get('marketing_slug', '#')=='MPP - IT Support':
+    video_1='https://www.youtube.com/embed/UcjmgI33wy0?rel=0'
+    video_2='https://www.youtube.com/embed/mWno86ymW8Q?rel=0'
+  elif program_data.get('marketing_slug', '#')=='MPP - Big Data':
+    video_1='https://www.youtube.com/embed/pVeGdaR1ZTo?rel=0'
+    video_2='https://www.youtube.com/embed/jgcoLNJhhbY?rel=0'
+  elif program_data.get('marketing_slug', '#')=='MPP - Front End Development':
+    video_1='https://www.youtube.com/embed/16xBACALzZ4?rel=0'
+    video_2='https://www.youtube.com/embed/4DkqB9hD5V0?rel=0'
+  elif program_data.get('marketing_slug', '#')=='MPP - Dev Ops':
+    video_1='https://www.youtube.com/embed/mjOMFjFGWGU?rel=0'
+    video_2='https://www.youtube.com/embed/Fq3lm0c3Rng?rel=0'
+  elif program_data.get('marketing_slug', '#')=='MPP - Cloud':
+    video_1='https://www.youtube.com/embed/0YLsG7nw_Us?rel=0'
+    video_2='https://www.youtube.com/embed/ItqZ23WbOfc?rel=0'
+  else:
+    video_1='#'
+    video_2='#'
+%>
+
+<main id="main" aria-label="Content" tabindex="-1">
+	<div class="js-program-details-wrapper">
+    <header class="js-program-header program-header full-width-banner">
+        <div class="banner-background-wrapper">
+            <picture>
+                <source srcset="${program_data['banner_image_urls'].get('w1440h480', '#')}" media="(min-width: 1180px)">
+                <source srcset="${program_data['banner_image_urls'].get('w726h242', '#')}" media="(min-width: 768px)">
+                <img class="banner-background-image" srcset="" alt="${program_data['banner_image_urls'].get('w348h116', '#')}">
+            </picture>
+
+            <div class="banner-content grid-container">
+                <h2 class="hd-1 title row">${program_data['name']}</h2>
+                <p class="hd-4 subtitle row">${program_data['subtitle']}</p>
+            </div>
+        </div>
+	%if video_1 != '#':
+                <div class="course-detail-mkt-video grid-container">
+                    <div class="video-container">
+                        <iframe src="${video_1}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+                    </div>
+                    <div class="video-container">
+                        <iframe src="${video_2}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+	%else:
+            <nav class="breadcrumb-wrapper grid-container" aria-label="breadcrumb" role="navigation"></nav>
+	%endif
+    </header>
+    
+    <div class="program-details-content grid-container">
+        <div class="js-program-progress-view"></div>
+        <h2 class="sr-only collection-title">Course List</h2>
+        <div class="js-course-list row">
+            %for course in program_data['course_codes']:
+                <div class="course-card card">
+                    <div class="section">
+                        <div class="course-meta-container col-12 md-col-8 sm-col-12">
+                            <div class="course-image-container">
+                                <a href="${course['run_modes'][0].get('course_url', '#')}about" class="course-image-link">
+                                    <img class="header-img" src="${course['run_modes'][0].get('course_image_url', '#')}" alt="${course['display_name']}s Home Page.">
+                                </a>
+                            </div>
+                            <div class="course-details">
+                                <h3 class="course-title">                
+                                    <a href="${course['run_modes'][0].get('course_url', '#')}about" class="course-title-link">
+                                        ${course['display_name']}
+                                    </a>
+                                </h3>
+                                <div class="course-text">
+                                    <span class="course-key">${course['key']}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="course-actions col-12 md-col-4 sm-col-12">
+                            <div>
+                                % if course['run_modes'][0]['is_enrolled']:
+                                    <div class="enrollment-info">enrolled</div>
+                                        <a href="${course['run_modes'][0].get('course_url', '#')}" class="btn view-course-link">
+                                            % if course['run_modes'][0]['is_enrollment_open']:
+                                                View Course            
+                                            % else:
+                                                View Archived Course
+                                            % endif
+                                        </a>
+                                % else:
+                                    % if len(course['run_modes']) > 0:
+                                        <div class="enrollment-info">not enrolled</div>
+                                        <button type="button" class="btn-brand btn cta-primary enroll-button">
+					   <a href="${course['run_modes'][0].get('course_url', '#')}about" class="" style="color: #fff;">
+    						Enroll Now
+					   </a>
+                                        </button>
+                                    % else:
+                                        <div class="no-action-message">
+                                            Not Currently Available
+                                        </div>
+                                    % endif
+                                % endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            %endfor
+        </div>
+        <aside class="js-course-sidebar"></aside>
+    </div>
+</div>
+</main>
+
+

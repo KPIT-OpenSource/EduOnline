@@ -1,0 +1,273 @@
+<%page expression_filter="h"/>
+<%! from django.utils.translation import ugettext as _ %>
+<%namespace name='static' file='../static_content.html'/>
+<%
+course_mode_class = course_mode if course_mode else ''
+from datetime import datetime
+month_names = []
+today = datetime.now()
+month = today.strftime("%B")
+day = today.day
+year = today.year
+todays_date = str(month)+" "+str(day)+", "+str(year) 
+%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+  body {
+            margin-top: 20px !important;
+            margin-bottom: 20px !important;
+        }
+
+        .accomplishment-rendering {
+            margin: 0 auto !important;
+            border: none !important;		
+            max-width: 73.125rem ;
+        }
+
+        .outter-border {
+	    width:100% !important;
+            box-shadow: 0 0 3px #ccc !important;
+            border: 3px solid rgb(137, 63, 96) !important;
+        }
+
+        .inner-border {
+            margin: 10px !important;
+            box-shadow: 0 0 3px #ccc !important;
+            border: 3px solid rgb(34, 149, 196) !important;
+        }
+
+        .accomplishment-type {
+           padding: 1.75rem 3.75rem !important;
+           margin-right:0 !important;
+           margin-left:0 !important;
+        }
+	.accomplishment-type-symbol{
+	  display:block !important;
+          float:left !important;		
+	  margin: 0 !important;
+	  width: auto !important;
+          height: auto !important;
+        }
+
+        .logo1 {
+            height: 50px !important;
+        }
+        .accomplishment-type-label,
+        .accomplishment-statement-head,
+        .accomplishment-statement-success-text,
+        .accomplishment-course-,.accomplishment-footer,.accomplishment-course-details {
+            color: rgb(123, 123, 123) !important;
+        }
+
+        .accomplishment-statement{
+	    margin:0 !important;
+	    padding: 0 !important;
+	    text-align:left !important;
+	}
+        .accomplishment-type-label {
+            float: right !important;
+            line-height: 27px !important;
+            text-align: right !important;
+            margin:0 !important;
+            width: auto !important;
+	 }
+
+        .accomplishment-type-label-title {
+            font-size: 32px !important;
+        }
+
+        .accomplishment-type-label-text {
+            font-size: 18px !important;
+            font-style: italic !important;
+        }
+
+        .wrapper-statement {
+            margin:2px !important;
+            padding: 0.75rem 3.25rem 0.75rem 3.25rem !important;
+            background-color: rgb(244, 244, 244) !important;
+	    width:auto !important;
+        }
+
+        .accomplishment-statement-success-text,
+        .accomplishment-statement-head,
+        .accomplishment-course,
+        .accomplishment-course-details {
+            font-size: 18px !important;
+        }
+
+
+        .accomplishment-statement-student-name,
+        .accomplishment-statement-success-text,
+        .accomplishment-course,
+        .accomplishment-course-details {
+            padding-top: 0.25rem !important;
+            width: 100% !important;
+        }
+
+        .accomplishment-statement-student-name,
+        .accomplishment-course {
+            color: rgb(12, 157, 220) !important;
+            font-size: 36px !important;
+            font-weight: bold !important;
+        }
+
+        .accomplishment-course{
+	    margin:0 !important;
+            font-size: 36px !important;
+            font-style: italic !important;
+        }
+
+        .accomplishment-course-details {
+            line-height: 32px !important;
+            padding-bottom: 0.25rem !important;
+        }
+
+        .accomplishment-course-details b,.signatory-name ,.organization {
+            font-weight: bolder !important;
+            color: rgb(79, 79, 81) !important;
+        }
+
+        .accomplishment-signatories .wrapper-signatories {
+            padding: 0.25rem 3.25rem 0 3.25rem !important!important;
+        }
+
+        .signatory {
+	    width:80% !important;
+            padding: 10px !important;
+        }
+
+        .signatory hr {
+            border-top: 1px solid #000000 !important;
+        }
+        .signatory-name{
+            font-size: 20px !important;
+            padding: 0 !important;
+            margin: 0 !important;	
+            font-weight: bolder !important;
+        }
+        .signatory-signature .role{
+            font-size: 16px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .signatory-signature{
+	    padding: 0.25rem 0.625rem !important;
+            width: 80% !important;
+            height: 50px !important;
+        }
+	 
+	.accomplishment-rendering .accomplishment-signatories {
+ 	   margin:0 !important;
+           padding:0 !important;
+	   border:none !important;	
+        }
+
+        .accomplishment-footer {
+            text-align: center !important;
+            padding:0 10px 5px 10px !important;
+            font-size: 9px !important;
+        }
+        @media print{@page {size: landscape ; margin:0px;}}
+</style>
+<main class="accomplishment accomplishment-main ">
+    <div class="wrapper-accomplishment-rendering">
+        <div class="accomplishment-rendering">
+            <div class="outter-border">
+                <div class="inner-border">
+                    <div>
+                    <span class="deco-corner deco-corner-tl"></span>
+                    <span class="deco-corner deco-corner-tr"></span>
+                    <span class="deco-corner deco-corner-bl"></span>
+                    <span class="deco-corner deco-corner-br"></span>
+
+                    <div class="accomplishment-type">
+                        <span class="accomplishment-type-symbol">
+                            <img class="src logo1" src="${static.url('images/logo.png')}" alt="Image for course mode of type ${course_mode_class}">
+                            </span>
+
+                        <span class="accomplishment-type-label hd-3">
+                            <span class="accomplishment-type-label-title">${_('CERTIFICATE')}</span><br />
+                            <span class="accomplishment-type-label-text">${_('Issued')} <span>${todays_date}</span></spam>
+                            </span>
+                    </div>
+
+                    <div class="wrapper-statement">
+                        <div class="accomplishment-statement">
+                            <span class="accomplishment-statement-head">${_('This is to certify that')}</span><br />
+                            <div class="accomplishment-statement-student-name">${user_name}</div>
+                            <div class="accomplishment-statement-success-text">${_(' has successfully completed')}</div>
+                            <div class="accomplishment-course hd-1 emphasized">
+                                <span class="accomplishment-course-number">${accomplishment_copy_course_org}</span>:
+                                <span class="accomplishment-course-name">${accomplishment_copy_course_name}</span>
+                            </div>
+                            <div class="accomplishment-course-details">
+                                ${_('a course of study offered by')} <b> ${_('eduOnline')}</b> <br/> 
+				${_('an online learning platform')} ${_('through')} <b>${_('ECoDe')}</b>, <b> ${_('KPIT Technologies Ltd.')}</b> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accomplishment-signatories">
+                        <div class="wrapper-signatories">
+                            <div class="list-signatories">
+                                % if certificate_data:
+                                <div class="row">
+                                    % for signatory in certificate_data.get('signatories', []):    
+                                    <div class="col">
+                                        <div class="signatory">
+                                            <img class="signatory-signature"
+                                                src="${static.url(signatory['signature_image_path'])}"
+                                                alt="${signatory['name']}"
+						style="display:block;">
+                                            <hr>
+                                            <h4 class="signatory-name hd-5">${signatory['name']}</h4>
+                                            <p class="signatory-credentials copy copy-micro">
+                                                <span class="role">${signatory['title']}</span>
+                                                <span class="organization">${signatory['organization']}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    % endfor
+                                </div>
+                                % endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accomplishment-footer">
+                        <div>${_('HONOR CODE CERTIFICATE')}</div>
+                        <div>${_('*Authentication of this certificate is validated by KPIT')}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="wrapper-accomplishment-metadata">
+      <div class="accomplishment-metadata">
+     	<h2 class="accomplishment-metadata-title hd-6">${accomplishment_copy_more_about}</h2>
+
+	<div class="wrapper-metadata">
+	<dl class="metadata accomplishment-recipient">
+	<dt class="label sr-only">${_("Awarded to:")}</dt>
+	<dd class="value copy copy-meta">
+	<span class="recipient-img">
+		<img class="src" src="/static/certificates/images/demo-user-profile.png" alt="Recipient Image">
+	</span>
+	<div class="recipient-details">
+		<h3 class="recipient-name">${accomplishment_copy_name}</h3>
+		<p class="recipient-username">${accomplishment_copy_username} @ ${platform_name}</p>
+	</div>
+	</dd>
+	</dl>
+	<dl class="metadata accomplishment-id">
+	<dt class="label copy copy-meta">${certificate_id_number_title}:</dt>
+	<dd class="value copy copy-base">${certificate_id_number}</dd>
+	</dl>
+	<dl class="metadata accomplishment-date">
+	<dt class="label copy copy-meta">${certificate_date_issued_title}</dt>
+	<dd class="value copy copy-base">${certificate_date_issued}</dd>
+	</dl>
+	</div>
+	</div>
+    </div>
+</main>
+

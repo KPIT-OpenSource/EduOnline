@@ -87,8 +87,8 @@
         "user": "edxapp"
     }, 
     "ECOMMERCE_API_SIGNING_KEY": "SET-ME-PLEASE", 
-    "EMAIL_HOST_PASSWORD": "edu@12345$", 
-    "EMAIL_HOST_USER": "eduonline@kpit.com", 
+    "EMAIL_HOST_PASSWORD": " ", 
+    "EMAIL_HOST_USER": " ", 
     "ENTERPRISE_REPORTING_SECRET": "0000000000000000", 
     "ENTERPRISE_SERVICE_WORKER_USERNAME": "enterprise_worker", 
     "EVENT_TRACKING_SEGMENTIO_EMIT_WHITELIST": [], 

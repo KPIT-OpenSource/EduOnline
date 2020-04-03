@@ -3,8 +3,8 @@
 
 CORS_ORIGIN_WHITELIST:
 - 127.0.0.1:8010
-- studioedx.kpit.com
-- eduonline.kpit.com
+- studio.org.com
+- sitename.org.com
 DATABASES:
     default:
         ATOMIC_REQUESTS: true
@@ -20,25 +20,25 @@ DATABASE_OPTIONS:
 JWT_AUTH:
     JWT_ISSUERS:
     -   AUDIENCE: lms-key
-        ISSUER: https://eduonline.kpit.com/oauth2
+        ISSUER: https://sitename.org.com/oauth2
         SECRET_KEY: lms-secret
     -   AUDIENCE: programs-key
-        ISSUER: https://eduonline.kpit.com/oauth2
+        ISSUER: https://sitename.org.com/oauth2
         SECRET_KEY: programs-secret
 LANGUAGE_CODE: en-us
 MEDIA_STORAGE_BACKEND:
     DEFAULT_FILE_STORAGE: django.core.files.storage.FileSystemStorage
     MEDIA_ROOT: /edx/var/programs/media
     MEDIA_URL: /media/
-ORGANIZATIONS_API_URL_ROOT: https://eduonline.kpit.com/api/organizations/v0/
+ORGANIZATIONS_API_URL_ROOT: https://sitename.org.com/api/organizations/v0/
 PLATFORM_NAME: KPIT
-PUBLIC_URL_ROOT: https://eduonline.kpit.com/oauth2
+PUBLIC_URL_ROOT: https://sitename.org.com/oauth2
 SECRET_KEY: Your secret key here
 SOCIAL_AUTH_EDX_OIDC_ID_TOKEN_DECRYPTION_KEY: programs-secret
 SOCIAL_AUTH_EDX_OIDC_KEY: programs-key
-SOCIAL_AUTH_EDX_OIDC_LOGOUT_URL: https://eduonline.kpit.com/logout
+SOCIAL_AUTH_EDX_OIDC_LOGOUT_URL: https://sitename.org.com/logout
 SOCIAL_AUTH_EDX_OIDC_SECRET: programs-secret
-SOCIAL_AUTH_EDX_OIDC_URL_ROOT: https://eduonline.kpit.com/oauth2
+SOCIAL_AUTH_EDX_OIDC_URL_ROOT: https://sitename.org.com/oauth2
 SOCIAL_AUTH_REDIRECT_IS_HTTPS: true
 STATIC_ROOT: /edx/var/programs/staticfiles
 TIME_ZONE: UTC
